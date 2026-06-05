@@ -14,6 +14,24 @@ An AI-powered Resume Analyzer built with Python, Streamlit, Ollama, EasyOCR, and
 * Interactive Dashboard
 * Visual Skill Match Analysis
 
+## Screenshots
+
+### Home Page
+
+![Home](screenshots/home.png)
+
+### Resume Analysis
+
+![Analysis](screenshots/analysis.png)
+
+### Skills Detection
+
+![Skills](screenshots/skills.png)
+
+### AI Feedback
+
+![AI Feedback](screenshots/ai_analysis.png)
+
 ## Tech Stack
 
 * Python
@@ -43,6 +61,7 @@ ocr_helper.py
 ollama_helper.py
 skills.py
 requirements.txt
+screenshots/
 ```
 
 ## Future Improvements
