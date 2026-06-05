@@ -14,7 +14,48 @@ st.set_page_config(
     page_icon="📄",
     layout="wide"
 )
+st.markdown("""
+<style>
 
+.skill-container {
+    margin-bottom: 10px;
+}
+
+.skill-tag-blue {
+    display:inline-block;
+    padding:6px 12px;
+    margin:4px;
+    border-radius:20px;
+    background:#1e3a8a;
+    color:white;
+    font-size:13px;
+    font-weight:500;
+}
+
+.skill-tag-green {
+    display:inline-block;
+    padding:6px 12px;
+    margin:4px;
+    border-radius:20px;
+    background:#14532d;
+    color:white;
+    font-size:13px;
+    font-weight:500;
+}
+
+.skill-tag-red {
+    display:inline-block;
+    padding:6px 12px;
+    margin:4px;
+    border-radius:20px;
+    background:#7f1d1d;
+    color:white;
+    font-size:13px;
+    font-weight:500;
+}
+
+</style>
+""", unsafe_allow_html=True)
 # ----------------------------------
 # CUSTOM CSS
 # ----------------------------------
@@ -196,22 +237,35 @@ if uploaded_file:
 
     st.divider()
 
-    # ----------------------------------
-    # FOUND SKILLS
-    # ----------------------------------
+   # ----------------------------------
+# SKILLS FOUND
+# ----------------------------------
 
-    st.subheader("🛠 Skills Found")
+    st.subheader("🧠 Skills Found")
 
     if found_skills:
 
+        found_html = '<div class="skill-container">'
+
         for skill in found_skills:
-            st.success(skill)
+            found_html += (
+                f'<span class="skill-tag-blue">{skill}</span>'
+            )
+
+        found_html += "</div>"
+
+        st.markdown(
+            found_html,
+            unsafe_allow_html=True
+        )
 
     else:
 
         st.warning(
             "No skills detected."
         )
+
+    st.divider()
 
     # ----------------------------------
     # MATCHED SKILLS
@@ -221,14 +275,27 @@ if uploaded_file:
 
     if matched_skills:
 
+        matched_html = '<div class="skill-container">'
+
         for skill in matched_skills:
-            st.success(skill)
+            matched_html += (
+                f'<span class="skill-tag-green">{skill}</span>'
+            )
+
+        matched_html += "</div>"
+
+        st.markdown(
+            matched_html,
+            unsafe_allow_html=True
+        )
 
     else:
 
         st.warning(
             "No matched skills."
         )
+
+    st.divider()
 
     # ----------------------------------
     # MISSING SKILLS
@@ -238,8 +305,19 @@ if uploaded_file:
 
     if missing_skills:
 
+        missing_html = '<div class="skill-container">'
+
         for skill in missing_skills:
-            st.error(skill)
+            missing_html += (
+                f'<span class="skill-tag-red">{skill}</span>'
+            )
+
+        missing_html += "</div>"
+
+        st.markdown(
+            missing_html,
+            unsafe_allow_html=True
+        )
 
     else:
 
@@ -248,16 +326,12 @@ if uploaded_file:
         )
 
     st.divider()
-
     # ----------------------------------
-    # PIE CHART
-    # ----------------------------------
+# PIE CHART
+# ----------------------------------
 
     chart_data = {
-        "Category": [
-            "Matched",
-            "Missing"
-        ],
+        "Category": ["Matched", "Missing"],
         "Count": [
             len(matched_skills),
             len(missing_skills)
@@ -273,7 +347,7 @@ if uploaded_file:
 
     st.plotly_chart(
         fig,
-        width="stretch"
+        use_container_width=True
     )
 
     st.divider()
